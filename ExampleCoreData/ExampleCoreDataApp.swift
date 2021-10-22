@@ -1,14 +1,13 @@
 //
-//  BookwormApp.swift
-//  Bookworm
+//  ExampleCoreDataApp.swift
+//  ExampleCoreData
 //
-//  Created by Yash Poojary on 21/10/21.
 //
 
 import SwiftUI
 
 @main
-struct BookwormApp: App {
+struct ExampleCoreDataApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
