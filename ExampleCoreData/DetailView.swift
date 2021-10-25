@@ -17,6 +17,14 @@ struct DetailView: View {
     
     var book: Book
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.dateStyle = .medium
+        
+        return formatter
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -43,6 +51,15 @@ struct DetailView: View {
                 
                 RatingView(rating: .constant(Int(book.rating)))
                     .font(.largeTitle)
+                
+                
+                HStack {
+                    Text("Date added:")
+                        .font(.headline)
+                    Text("\(book.date ?? Date(), formatter: dateFormatter)")
+                }
+                .padding()
+                
                 
                 Spacer()
                 
@@ -74,6 +91,8 @@ struct DetailView: View {
         
         presentationMode.wrappedValue.dismiss()
     }
+    
+    
 }
 
 struct DetailView_Previews: PreviewProvider {
@@ -87,6 +106,7 @@ struct DetailView_Previews: PreviewProvider {
         book.genre = "Fantasy"
         book.rating = 4
         book.review = "This was a great book"
+        book.date = Date()
         
         return NavigationView {
             DetailView(book: book)

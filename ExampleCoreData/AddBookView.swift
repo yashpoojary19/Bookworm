@@ -18,7 +18,9 @@ struct AddBookView: View {
     @State private var genre = ""
     @State private var review = ""
     
-    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
+    let genres = ["", "Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
+    
+    var dateAdded = Date()
     
     var body: some View {
         NavigationView {
@@ -46,6 +48,7 @@ struct AddBookView: View {
                     Button("Save") {
                         let newBook = Book(context: moc)
                         
+                        newBook.date = dateAdded
                         newBook.title = title
                         newBook.author = author
                         newBook.rating = Int16(rating)
@@ -57,6 +60,7 @@ struct AddBookView: View {
                         
                     }
                 }
+                .disabled(genre.isEmpty)
             }
             .navigationBarTitle("Add Book")
             
